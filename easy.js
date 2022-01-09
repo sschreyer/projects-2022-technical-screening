@@ -31,8 +31,23 @@ var assert = require("assert")
 // Explanation: Empty array...
 
 const altNumbers = (numArray) => {
-    // TODO: COMPLETE THIS FUNCTION
-    return [];
+    let isPos = n => n >= 0;
+    posNumbers = numArray.filter(isPos);
+    negNumbers = numArray.filter(n => !isPos(n));
+    
+    let posNext = posNumbers.length >= negNumbers.length;
+    let altArray = [];
+    for (let i = 0; i < numArray.length; i++) {
+        if ((posNext && posNumbers.length > 0)) {
+            altArray.push(posNumbers.shift());
+        } else {
+            altArray.push(negNumbers.shift());
+        }
+
+        posNext = !posNext;
+    }
+
+    return altArray;
 }
 
 module.exports = { altNumbers } // Do not modify this line
